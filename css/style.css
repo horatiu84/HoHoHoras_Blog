@@ -1,0 +1,84 @@
+body{
+    background-image: url("/HoHoHoras_Blog/uploads/photos/Christmas.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Commissioner', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+textarea, .continut{
+    white-space: pre-wrap;
+}
+.main-photo{
+    width: 100%;
+}
+.articole {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card {
+    background-image: url("/HoHoHoras_Blog/uploads/photos/card.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 1rem;
+    transition: all .3s ease-in-out;
+}
+
+.card:hover{
+    transform: scale(1.05);
+}
+
+.card h5 {
+    color: red;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.articol {
+  padding: 5rem;
+  font-size: 1.3rem;
+}
+
+.foto{
+    width: 60%;
+    display: block;
+    margin: auto;
+    padding: 2rem;
+}
+.edit-foto{
+    max-height: 550px;
+    display: block;
+    margin: auto;
+    padding: 2rem;
+}
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-light {
+    margin-top: 0.5rem;
+}
+
+.btns{
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.light{
+    background-color: aliceblue;
+}
+
+.delete-article{
+    display: flex;
+}
+
+footer{
+    margin-top: auto;
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba(132, 132, 132, 0.75);
+}
