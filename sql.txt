@@ -2,7 +2,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 CREATE DATABASE hohohora;
-USE hoho;
+USE hohohora;
 
 CREATE TABLE `admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
