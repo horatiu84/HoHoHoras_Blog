@@ -1,8 +1,11 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+CREATE DATABASE hohohora;
+USE hoho;
+
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `nume` varchar(255) NOT NULL,
   `parola` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -11,7 +14,7 @@ INSERT INTO `admin` (`id`, `nume`, `parola`) VALUES
 (1, 'hora', '$2y$10$dkku31k0L9dpLm3A7Ls91u3UGxTjzfIVOkc1OvTGaZL8fgUk9Gw86');
 
 CREATE TABLE `articole` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `titlu` varchar(255) NOT NULL,
   `continut` text NOT NULL,
   `data_publicarii` datetime DEFAULT NULL,
@@ -26,18 +29,6 @@ INSERT INTO `articole` (`id`, `titlu`, `continut`, `data_publicarii`, `foto`) VA
 (5, 'A brief history of Christmas', 'ORIGINS OF CHRISTMAS\r\nThe origins of Christmas stem from both the pagan and Roman cultures. The Romans actually celebrated two holidays in the month of December. The first was Saturnalia, which was a two-week festival honoring their god of agriculture Saturn. On December 25th, they celebrated the birth of Mithra, their sun god. Both celebrations were raucous, drunken parties.\r\n\r\nAlso in December, in which the darkest day of the year falls, the pagan cultures lit bonfires and candles to keep the darkness at bay. The Romans also incorporated this tradition into their own celebrations.\r\n\r\nAs Christianity spread across Europe, the Christian clergy were not able to curb the pagan customs and celebrations. Since no one knew Jesus’s date of birth, they adapted the pagan ritual into a celebration of His birthday.', '2023-12-22 07:34:11', NULL),
 (6, 'The Christmas Hat!', 'Every year, as Christmas rolls around, one will commonly see people wearing red pointed hats. They sometimes have little white balls on top, and they usually have a band of white around the bottom, but they are always red and always pointed. They are often called a Santa Hat in today\'s world, but this hat has been called by many other names throughout history. Remember, in pagan culture, the names and associated meanings often change, but the ritual or tradition remains very much the same. This is the case with the Santa Hat. It has been known throughout history as the Pileus, Phrygian Cap, Cap of Liberty, Freedman\'s Cap, Cap of Mithra, and has only recently taken on the name Santa Hat.', '2023-12-22 10:22:00', NULL),
 (8, 'The Christmas Hat', '1. The Santa Hat Is Inspired by the Pileus Hat\r\nThousands of people refer to the red hat as the Santa hat. However, this style was first known as a pileus hat. \r\n\r\nThe pileus hat was popular in Ancient Greece, Pannonia, Eturia, and other nearby regions and looks similar to the modern-day Santa hat. It is a brimless hat that people usually make from felt. \r\n\r\n2. Thomas Nast Drew Santa Claus Wearing a Pileus Hat in 1863\r\nOne of the first modern drawings of Santa Claus dates back to 1863. While there had been many depictions of the fictitious man, this was a unique illustration. Thomas Nast’s visual representation of Santa Claus in 1863 inspired many modern depictions of Claus’s costume.\r\n\r\nNast drawing of Santa\r\n“Merry Old Santa Claus” by US Department of State is marked with CC PDM 1.0\r\n3. Coca-Cola Popularized the Red Santa Hat\r\nMany people believe that the Coca-Cola Company invented Santa Claus. Even though this is not true, it is fair to say that the company played a significant role in the modern costume we see Santa wearing today.\r\n\r\nCoca-cola followed in Thomas Nast’s footsteps, drawing inspiration from his depiction of Santa, who illustrated and consequently popularized the red Santa hat we see today.\r\n\r\n\r\n4. The Pope Sometimes Wears a ‘Santa’ Hat\r\nThe pileus became popular in Italy during the Renaissance where they were made from black or red velvet. These hats inspired the Camauro still worn in the Roman Catholic Church.\r\n\r\nWhen Pope Benedict XIV wore one in 2005 people immediately drew a comparison to Santa.\r\n\r\n5. In Parts of Europe Santa Still Wears a Miter Hat\r\nThe Santa we know today originated in Europe as St. Nicholas, a Greek bishop known for his strong defense of Christianity in 300 AD.\r\n\r\nKnown for performing miracles he became the patron saint of children and a ‘magical gift giver.’ In countries like The Netherlands and Austria, the traditional image of St. Nicholas can be seen with the miter hat.', '2023-12-22 14:55:00', 'hat-removebg-preview.png'),
-(10, 'Something', 'Something something .. ', '2023-12-22 18:26:00', 'Craciun-1.jpg'),
+(10, 'Something', 'Something something .. ', '2023-12-22 18:26:00', 'Craciun-1.jpg');
 
 
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`);
-
-ALTER TABLE `articole`
-  ADD PRIMARY KEY (`id`);
-
-
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
-ALTER TABLE `articole`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
