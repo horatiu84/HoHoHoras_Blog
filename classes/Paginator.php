@@ -2,17 +2,17 @@
 /**
  * Paginator
  *
- * Data for selecting a page of records
+ * Informatii pentru a selecta un anumit numar de articole per pagina
  */
 class Paginator
 {
     /**
-     * Number of records to return
+     * Numarul de inregistrari pe pagina
      * @var int
      */
     public $limit;
     /**
-     * Number of records to skip before the page
+     * Numarul de inregistrari pe care sa le sarim
      * @var int
      */
     public $offset;
@@ -21,8 +21,8 @@ class Paginator
     public $next;
     /**
      * Constructor
-     * @param int $page Page number
-     * @param int $records_per_page Number of records per page
+     * @param int $page Numarul paginii
+     * @param int $records_per_page Numarul de inregistrari pe pagina
      */
     public function __construct($page,$records_per_page,$total_records){
         $page=filter_var($page,FILTER_VALIDATE_INT,[
@@ -49,3 +49,4 @@ class Paginator
 
 // resurse : - https://stackoverflow.com/questions/41777993/php-pagination-next-previous-button
 //          - https://programmopedia.com/pagination-in-php/
+//          - https://www.sqltutorial.org/sql-limit/

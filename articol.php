@@ -3,8 +3,14 @@ require 'includes/init.php';
 
 $conn = require 'includes/db.php';
 
-if (isset($_GET['id'])) {
+/* acest script o sa afiseze datele pentru un singru articol,
+   pentru inceput o sa verificam daca exista cheia id in variabila globala
+   $_GET, iar daca este inseamna ca putem extrage din baza de date
+    articolul cu id care ne este transmis din index.php.
+*/
 
+if (isset($_GET['id'])) {
+    // aici ne ajutam de metoda getById, pentru a prelua articolul
     $article = Articol::getById($conn,$_GET['id']);
 } else {
     $article = null;

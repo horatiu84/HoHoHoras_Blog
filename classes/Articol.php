@@ -172,6 +172,11 @@ class Articol
         return $stmt->execute();
     }
 
+    /**
+     * Metoda pentru a crea un nou articol
+     * @param obiect $conn Conectia la baza de date
+     * @return bool|void
+     */
     public function create($conn) {
 
         if($this->validate()) {
@@ -212,7 +217,12 @@ class Articol
     }
 
 
-
+    /**
+     * Metoda pentru a seta o noua imagine pentru un articol
+     * @param $conn Coenctia la baza de date
+     * @param string $filename este denumirea fisierului pentru noua imagine
+     * @return boolean true daca s-a efectuat operatia, false daca nu
+     */
     public function setImageFile($conn,$filename)
     {
         $sql = "UPDATE articole

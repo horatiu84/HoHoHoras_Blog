@@ -15,51 +15,51 @@ $sent = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-$email = $_POST['email'];
-$subject = $_POST['subject'];
-$message = $_POST['message'];
+    $email = $_POST['email'];
+    $subject = $_POST['subject'];
+    $message = $_POST['message'];
 
-$errors = [];
+    $errors = [];
 
-if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
-$errors[] = 'Please enter a valid email address';
-}
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        $errors[] = 'Please enter a valid email address';
+    }
 
-if($subject == '') {
-$errors[]='Please enter a subject';
-}
+    if($subject == '') {
+        $errors[]='Please enter a subject';
+    }
 
-if($message =='') {
-$errors[]='Please enter a message';
-}
+    if($message =='') {
+        $errors[]='Please enter a message';
+    }
 
-if (empty($errors)) {
+    if (empty($errors)) {
 
-$mail = new PHPMailer(true);
+        $mail = new PHPMailer(true);
 
-try {
-$mail->isSMTP();
-$mail->Host = SMTP_HOST;
-$mail->SMTPAuth = true;
-$mail->Username = SMTP_USER;
-$mail->Password = SMTP_PASSWORD;
-$mail->SMTPSecure = 'tls';
-$mail->Port = 587;
+        try {
+            $mail->isSMTP();
+            $mail->Host = SMTP_HOST;
+            $mail->SMTPAuth = true;
+            $mail->Username = SMTP_USER;
+            $mail->Password = SMTP_PASSWORD;
+            $mail->SMTPSecure = 'tls';
+            $mail->Port = 587;
 
-$mail->setFrom('catalin.ciprian84@gmail.com');
-$mail->addAddress('catalin.ciprian84@gmail.com');
-$mail->addReplyTo($email);
-$mail->Subject = $subject;
-$mail->Body = $message;
+            $mail->setFrom('your email address');
+            $mail->addAddress('your email address');
+            $mail->addReplyTo($email);
+            $mail->Subject = $subject;
+            $mail->Body = $message;
 
-$mail->send();
+            $mail->send();
 
-$sent = true;
-} catch (Exception $e) {
-$errors[]= $mail->ErrorInfo;
-}
+            $sent = true;
+        } catch (Exception $e) {
+            $errors[]= $mail->ErrorInfo;
+        }
 
-}
+    }
 
 }
 

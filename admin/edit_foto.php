@@ -1,6 +1,9 @@
 <?php
 require '../includes/init.php';
 
+// resurse pentru a uploada fisiere in php : https://code.tutsplus.com/how-to-upload-a-file-in-php-with-example--cms-31763t
+// https://www.geeksforgeeks.org/how-to-upload-a-file-in-php/
+
 Auth::requireLogin();
 $conn = require '../includes/db.php';
 
@@ -14,8 +17,10 @@ if (isset($_GET['id'])) {
 } else {
     die("id not supplied, article not found");
 }
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
+// mai multe resurse despre variabila superglobala $_FILES : https://www.tutorialspoint.com/php-files
 
+if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    // pentru inceput o sa verificam daca avem erori pt fisierul care il uploadam
     try {
         if(empty($_FILES)){
             throw new Exception('Invalid upload');
@@ -32,15 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             default:
                 throw new Exception('An error occurred');
         }
-        //restrict the file size
+        //Sa punem o restrictie de aproximativ 1Mb pentru fisierul incarcat
         if($_FILES['file']['size'] > 1000000){
             throw new Exception('File is to large');
         }
 
-        //restrict the file type
-
+        //sa punem o restrictie pentru tipul de fisier incarcat
         $mime_types = ['image/gif','image/png','image/jpeg'];
 
+        // functia finfo_open returneaza informatii despre un fisier
+        //resurse : https://www.php.net/manual/en/function.finfo-file.php
         $finfo = finfo_open(FILEINFO_MIME_TYPE);
         $mime_type = finfo_file($finfo,$_FILES['file']['tmp_name']);
 
@@ -48,21 +54,28 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             throw new Exception('Invalid file type');
         }
 
-        // Move uploaded file and sanitize it
+        // Mutam fisierul uploadat si il sanitizam
 
-        //Sanitize the uploaded file
+        //sanitizam fisierul uploadat
+
+        // functia pathinfo() - returneaza informatii despre o cale unde se gaseste un fisier
+        // mai multe resurse : https://www.php.net/manual/en/function.pathinfo.php
         $pathinfo = pathinfo($_FILES['file']['name']);
         $base = $pathinfo['filename'];
 
-        // we want to replace all the unwanted characters with '_'
+        // vrem sa inlocuim caracterele speciale cu  '_'
+        // mai multe despre functia preg_replace : https://reintech.io/blog/understanding-implementing-php-preg-replace-function
         $base = preg_replace('/[^a-zA-Z0-9_-]/','_',$base);
-        // restrict the number of characters in the file name
+        // putem restrictiona numarul de caractere din denumirea fisierului uploadat
+        // resurse pt functia mb_substr : https://www.php.net/manual/en/function.mb-substr.php
         $base = mb_substr($base,0,200);
         $filename=$base.'.'.$pathinfo['extension'];
-        // we save the destination location
+
+        // salvam locatia pentru destinatie
         $destination = "../uploads/$filename";
 
         $i = 1;
+        // daca mai exista cumva un fisier cu aceiasi denumire, o sa-i modificam putin denumirea, adaugand o cifra
         while (file_exists($destination)){
             $filename = $base."-$i.".$pathinfo['extension'];
             $destination= "../uploads/$filename";
@@ -74,7 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $previpus_image = $articol->foto;
 
             if ( $articol->setImageFile($conn,$filename) ) {
+                // daca exista o imagine anterioara la acest articol, aceasta o sa fie stearsa si inlocuita cu cea noua
                 if ($previpus_image) {
+                    // functia unlink sterge un fisier : https://www.php.net/manual/en/function.unlink.php
                     unlink("../uploads/$previpus_image");
                 }
                 header("Location: articol.php?id={$articol->id}");

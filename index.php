@@ -12,15 +12,16 @@ $conn = require 'includes/db.php';
  https://www.w3schools.com/php/php_oop_static_methods.asp
  array-ul $articole o sa contina toate articolele gasite in baza de date
 
- mai multe resurse despre format la data : https://www.php.net/manual/en/datetime.format.php
 */
 //$articole=Articol::getAll($conn);
 
+
+// vom folosi o noua metoda pentru a avea paginatie pe pagina, dar o sa las comentate explicatiile de mai sus,
+// daca nu se doreste partea de paginare
 $paginator = new Paginator($_GET['page'] ?? 1,4,Articol::getTotal($conn,true));
 
 $articole = Articol::getPage($conn,$paginator->limit,$paginator->offset,true);
 
-//print_r($articless);
 
 ?>
 <?php require 'includes/header.php'; ?>
@@ -34,6 +35,8 @@ $articole = Articol::getPage($conn,$paginator->limit,$paginator->offset,true);
   * Prima data vom face un loop(forEach) si din fiecare articol gasit,
   * putem prelua datele necesare .
  * Resurse pentru forEach : https://flexiple.com/php/php-foreach
+ *
+ * mai multe resurse despre format la data : https://www.php.net/manual/en/datetime.format.php
   */
 ?>
 <?php if(empty($articole)) : ?>
