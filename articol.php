@@ -30,7 +30,7 @@ if (isset($_GET['id'])) {
             ?>
         </time>
         <?php if ($article->foto) : ?>
-            <img class="foto" src="/uploads/<?=$article->foto; ?>">
+            <img class="foto" src="<?= ROOT?>/uploads/<?=$article->foto; ?>">
         <?php endif; ?>
         <p class="continut"><?= htmlspecialchars($article->continut) ?></p>
     </article>

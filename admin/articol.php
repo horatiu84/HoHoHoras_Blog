@@ -22,7 +22,7 @@ if (isset($_GET['id'])) {
             Unpublished
         <?php endif; ?>
         <?php if ($articol->foto) : ?>
-            <img class="foto" src="/uploads/<?=$articol->foto; ?>">
+            <img class="foto" src="<?= ROOT?>/uploads/<?=$articol->foto; ?>">
         <?php endif; ?>
         <p class="continut"><?= htmlspecialchars($articol->continut) ?></p>
     </article>

@@ -24,7 +24,7 @@ spl_autoload_register(function ($class){
  * O sa folosesc o constanta pentru cale, in caz ca vreau sa redenumesc
  * folderul in viitor, sa fac o singura modificare
  */
-const ROOT = '/HoHoHoras_Blog';
+const ROOT = '/mysite/HoHoHoras_Blog';
 
 
 session_start();
